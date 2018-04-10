@@ -1,3 +1,6 @@
+<head>
+  <title>Emergency Contact Wallapaper Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
 
@@ -77,13 +80,13 @@ input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder {
 
 body {
   font-family: 'Lato', sans-serif;
-  background: #e2dedb;
-  color: #b3aca7;
+  background: white;
+  color: black;
 }
 
 header {
   position: relative;
-  margin: 100px 0 25px 0;
+  margin: 10px 0 25px 0;
   font-size: 2.3em;
   text-align: center;
   letter-spacing: 7px;
@@ -93,6 +96,17 @@ header {
   position: relative;
   width: 500px;
   margin: 50px auto 100px auto;
+}
+
+p {
+
+  position: relative;
+  padding-bottom: 5%;
+  margin: auto;
+}
+
+.intro {
+  padding-top: -20px;
 }
 
 input {
@@ -113,6 +127,10 @@ input {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
+}
+
+.last_input {
+  border-bottom: solid 1px #b3aca7
 }
 
 input:hover {
@@ -168,20 +186,28 @@ textarea:hover {
   color: #e2dedb;
 }
 </style>
+</head>
 
-<header>FILL OUT THE FORM</header>
+<header><u>FILL OUT THE FORM</u></header>
 <form id="form" class="topBefore" action="" method="post">
+  <p class="intro">Enter your details here. We will generate an image with emergency contact, blood group etc. You can set that wallpaper as your lockscreen wallpaper.</p>
+  <br>
+  <p>Your details</p>
 	{% csrf_token %}
 	<input type="text" name="name" maxlength="120" required id="id_name" placeholder="NAME" />
 	<input type="number" name="age" required id="id_age" placeholder="AGE"/>
-	<input type="text" name="blood_group" maxlength="120" required id="id_blood_group" placeholder="BLOOD GROUP" />
+	<input class="last_input" type="text" name="blood_group" maxlength="120" required id="id_blood_group" placeholder="BLOOD GROUP" />
+  <br><br><br>
+  <p>Emergency Contact 1</p>
 	<input type="text" name="emergency_contact_1_name" maxlength="120" required id="id_emergency_contact_1_name" placeholder="EMERGENCY CONTACT 1 NAME"/>
 	<input type="text" name="emergency_contact_1_rel" maxlength="120" required id="id_emergency_contact_1_rel" placeholder="RELATION WITH CONTACT 1"/>
 	<input type="text" name="emergency_contact_1_contact_1" maxlength="15" required id="id_emergency_contact_1_contact_1" placeholder="PHONE NUMBER #1 OF CONTACT 1"/>
-	<input type="text" name="emergency_contact_1_contact_2" maxlength="15" id="id_emergency_contact_1_contact_2" placeholder="PHONE NUMBER #2 OF CONTACT 1"/>
+	<input class="last_input" type="text" name="emergency_contact_1_contact_2" maxlength="15" id="id_emergency_contact_1_contact_2" placeholder="PHONE NUMBER #2 OF CONTACT 1 (OPTIONAL)"/>
+  <br><br><br>
+  <p>Emergency Contact 2</p>
 	<input type="text" name="emergency_contact_2_name" maxlength="120" required id="id_emergency_contact_2_name" placeholder="EMERGENCY CONTACT 2 NAME"/>
 	<input type="text" name="emergency_contact_2_rel" maxlength="120" required id="id_emergency_contact_2_rel" placeholder="RELATION WITH CONTACT 2"/>
 	<input type="text" name="emergency_contact_2_contact_1" maxlength="15" required id="id_emergency_contact_2_contact_1" placeholder="PHONE NUMBER #1 OF CONTACT 2"/>
-	<input type="text" name="emergency_contact_2_contact_2" maxlength="15" id="id_emergency_contact_2_contact_2" placeholder="PHONE NUMBER #2 OF CONTACT 2"/>
+	<input type="text" name="emergency_contact_2_contact_2" maxlength="15" id="id_emergency_contact_2_contact_2" placeholder="PHONE NUMBER #2 OF CONTACT 2 (OPTIONAL)"/>
 	<input id="submit" type="submit" value="Submit">
 </form>

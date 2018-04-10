@@ -1,3 +1,4 @@
+<title></title>
 <style>
 	@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
 	div {
@@ -9,6 +10,10 @@
 </style>
 
 <div>
-	<h1>Save this image and set it as your lock screen wallpaper</h1>
-	<img height="624" src="{{ fn }}" alt="Image here">
+	<h1>Click on the image to download</h1><br><br>
+	<p>After downloading this image, set it up as your lockscreen wallpaper.</p>
+
+	<a download="{{ fm }}.png" href="{{ fn }}" title="Wallpaper Image">
+		<img height="624" alt="Image here" src="{{ fn }}">
+	</a>
 </div>

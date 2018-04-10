@@ -41,16 +41,22 @@ def index(request):
 			text_blood_group = "Blood Group: {}".format(blood_group)
 
 			emergency_contact_1_name_render = "Name: {} ({})".format(emergency_contact_1_name, emergency_contact_1_rel)
-			emergency_contact_1_contact_render = "Contact: {} / {}".format(emergency_contact_1_contact_1, emergency_contact_1_contact_2)
+			if emergency_contact_1_contact_2:
+				emergency_contact_1_contact_render = "Contact: {} / {}".format(emergency_contact_1_contact_1, emergency_contact_1_contact_2)
+			else:
+				emergency_contact_1_contact_render = "Contact: {}".format(emergency_contact_1_contact_1)
 
 			emergency_contact_2_name_render = "Name: {} ({})".format(emergency_contact_2_name, emergency_contact_2_rel)
-			emergency_contact_2_contact_render = "Contact: {} / {}".format(emergency_contact_2_contact_1, emergency_contact_2_contact_2)
-
+			if emergency_contact_2_contact_2:
+				emergency_contact_2_contact_render = "Contact: {} / {}".format(emergency_contact_2_contact_1, emergency_contact_2_contact_2)
+			else:
+				emergency_contact_2_contact_render = "Contact: {}".format(emergency_contact_2_contact_1)
 			(x, y) = (49, 600)
 
 			draw.text(xy=(x,y), text=text_name, fill=(255, 255, 255), font=font_type)
 			draw.text(xy=(x,y + 40), text=text_age, fill=(255, 255, 255), font=font_type)
-			draw.text(xy=(x,y + 80), text=text_blood_group, fill=(255, 255, 255), font=font_type)
+			if text_blood_group:
+				draw.text(xy=(x,y + 80), text=text_blood_group, fill=(255, 255, 255), font=font_type)
 			draw.text(xy=(x,y + 120), text="", fill=(255, 255, 255), font=font_type)
 			draw.text(xy=(x,y + 160), text="Emergency/Family contact details:", fill=(255, 255, 255), font=font_type)
 			draw.text(xy=(x,y + 200), text="", fill=(255, 255, 255), font=font_type)
@@ -59,8 +65,8 @@ def index(request):
 			draw.text(xy=(x,y + 320), text="", fill=(255, 255, 255), font=font_type)
 			draw.text(xy=(x,y + 360), text=emergency_contact_2_name_render, fill=(255, 255, 255), font=font_type)
 			draw.text(xy=(x,y + 400), text=emergency_contact_2_contact_render, fill=(255, 255, 255), font=font_type)
-
-			file_name = "media/{}.png".format(random.randint(1, 255))
+			file_nm = random.randint(1, 100000000)
+			file_name = "media/{}.png".format(file_nm)
 
 			image1.save(file_name)
 			file_name = file_name
@@ -68,7 +74,7 @@ def index(request):
 			form.save(commit=False)
 			form.save()
 
-			return render(request, "result.html", {'fn': file_name})
+			return render(request, "result.html", {'fn': file_name, 'fm': file_nm})
 		else:
 			return HttpResponse("Opps! An error occured. :(")
 
